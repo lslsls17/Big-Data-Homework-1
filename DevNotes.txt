@@ -1,0 +1,31 @@
+Development notes for Assignment A - by Andrew Sheppard
+=======================================================
+
+[Mon 9th Feb 2015]
+------------------
+
+To help the Baruch MFE BDiF 2015 students I will put some code into a Github repo so that everyone can see it. In this way the students can "look over my shoulder" as I do experiments with code that might be helpful in their own attempt to work on Assignment A.
+
+Part of my job as an MFE instructor is not only to teach the technical stuff, but also to teach "Professionalism" in all that the students do. "Professionalism" meaning being competent and trustworthy. Competent in the sense of having the technical and problem solving stills expected of a quant/programmer. Trustworthy in the sense that they get things down with the minimum of "hand holding" and in a way that fosters confidence and trust in themselves and in those around them.
+
+I can only show and teach, it is for the students to *learn*.
+
+Tip #1: All files should have, at a minimum, a copyright notice, such as the one shown below and at the bottom of this document. And, when necessary, a license to indicate how it may be used. This is important because in business you should always establish ownership.
+
+
+          /*******************************************************************************
+
+          (C) 2015, Andrew Sheppard, all rights reserved.
+
+          *******************************************************************************/
+
+
+
+
+
+
+/*******************************************************************************
+
+(C) 2015, Andrew Sheppard, all rights reserved.
+
+*******************************************************************************/
