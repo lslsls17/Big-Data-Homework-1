@@ -8,16 +8,14 @@
 #ifndef SCRUB_HPP_
 #define SCRUB_HPP_
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <string>
-#include <tuple>
 #include <algorithm>    // std::sort
 #include "data_class.hpp"
 #include <stdlib.h>     /* atoi */
-using namespace std;
 
-void Scrub(vector<data_A> data, vector<data_A> & signal, vector<data_A> & noise) {
+
+void Scrub(std::vector<data_A> data, std::vector<data_A> & signal,std:: vector<data_A> & noise) {
 
 	//sort(data.begin(),data.end());
 	for ( unsigned i = 0 ; i < data.size() ; i++ )
