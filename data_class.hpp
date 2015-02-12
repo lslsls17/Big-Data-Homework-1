@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>     /* atoi */
+
 class data_A
 {
 public:
@@ -24,8 +26,18 @@ public:
 	}
     bool operator < (const data_A & my_data) const
     {
-        return (price < my_data.price);
+        for (int i=0; i < date_time.size();i++)
+        {
+        	//std::cout<<((date_time[i])<(my_data.date_time[i]))<<std::endl;
+        	if ((date_time[i])<(my_data.date_time[i]))
+        		return true;
+        	if ((date_time[i])>(my_data.date_time[i]))
+        	        		return false;
+        }
+        return false;
+    	//return (price < my_data.price);
     }
+
 };
 
 

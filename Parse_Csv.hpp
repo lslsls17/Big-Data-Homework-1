@@ -49,6 +49,11 @@ std::vector<data_A> Read(std::string infilename) {
     return data;
 }
 
+void Write(std::vector<data_A> signal)
+{
+
+}
+
 
 
 #endif /* PARSE_CSV_HPP_ */
