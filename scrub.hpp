@@ -15,7 +15,7 @@
 #include <stdlib.h>     /* atoi */
 #include "Parse_Csv.hpp"
 
-void Scrub(std::string infilename) {
+int Scrub(std::string infilename) {
 	//std::vector<data_A> data;
 	std:: ifstream infile(infilename.c_str());
 	std::string date_time;
@@ -24,6 +24,7 @@ void Scrub(std::string infilename) {
     char date_time_C[40] ;
     char price_C[10] ;
     char volume_C[10] ;
+    int signal_size=0;
     if (infile.is_open())
                     {
                             while (infile.good())
@@ -40,7 +41,10 @@ void Scrub(std::string infilename) {
                          	       if (price< 500 ||price > 5000 )
                          	    	   Write(data_A(date_time, price,volume),"noice.txt");
                          	       else
+                         	       {
                          	    	   Write(data_A(date_time, price,volume),"signal.txt");
+                         	       	   signal_size++;
+                         	       }
 
                             }
                             infile.close();
@@ -49,6 +53,7 @@ void Scrub(std::string infilename) {
                     {
                     	std:: cout << "Error opening file";
                     }
+    return signal_size;
 
 }
 

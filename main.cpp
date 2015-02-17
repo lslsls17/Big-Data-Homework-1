@@ -15,10 +15,10 @@ using namespace std;
 
 int main() {
 
-
-	Scrub("data10k.txt");
-	Test_Normal("signal.txt");
-	//Test_Log_Normal(signal);
+	string filename;
+	int signal_size=Scrub("data10k.txt");
+	Test_Normal("signal.txt",signal_size);
+	//Test_Log_Normal("signal.txt",signal_size);
 
 
 	return 0;
