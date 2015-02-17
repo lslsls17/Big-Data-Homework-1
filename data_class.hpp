@@ -12,6 +12,8 @@
 #include <string>
 #include <stdlib.h>     /* atoi */
 
+
+//data to store the times series data
 class data_A
 {
 public:

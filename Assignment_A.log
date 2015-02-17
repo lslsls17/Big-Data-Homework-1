@@ -1,0 +1,93 @@
+2015-02-17 12:52:48,699 [INFO] Scrub into signal.txt and noise.txt takes : 12.3538
+2015-02-17 12:52:48,896 [INFO] 
+JB=7050.9
+Chi-Square from Normal Dist=5.99
+2015-02-17 12:52:48,900 [WARN] Is this return sample normal distributed? --NO
+2015-02-17 13:00:28,428 [INFO] Scrub data to signal.txt and noise.txt takes : 11.8511
+2015-02-17 13:00:28,607 [INFO] 
+JB=7050.9
+Chi-Square from Normal Dist=5.99 within 5% confidence level
+2015-02-17 13:00:28,607 [WARN] The sample are not normal within 5˜onfidence level by Jarque Bera Test
+2015-02-17 13:00:28,607 [INFO] Test Normal takes : 0.82015
+2015-02-17 13:09:56,300 [INFO] Scrub data to signal.txt and noise.txt takes : 12.7385
+2015-02-17 13:09:56,476 [INFO] 
+JB=7050.9
+Chi-Square from Normal Dist=5.99 within 5% confidence level
+2015-02-17 13:09:56,476 [WARN] The sample are not normal within 5˜onfidence level by Jarque Bera Test
+2015-02-17 13:09:56,476 [INFO] Test Normal takes : 0.82313
+2015-02-17 13:16:09,401 [INFO] Scrub data to signal.txt and noise.txt takes : 12.6593
+2015-02-17 13:16:09,573 [INFO] 
+JB=7050.9
+Chi-Square from Normal Dist=5.99 within 5% confidence level
+2015-02-17 13:16:09,573 [WARN] The sample are not normal within 5˜onfidence level by Jarque Bera Test
+2015-02-17 13:16:09,573 [INFO] Test Normal takes : 0.81144
+2015-02-17 13:16:09,775 [INFO] 
+JB=32774.6
+Chi-Square from Normal Dist=5.99 within 5% confidence level
+2015-02-17 13:16:09,781 [WARN] The sample are not log normal within 5˜onfidence level by Jarque Bera Test
+2015-02-17 13:16:09,781 [INFO] Test Log Normal takes : 0.92291
+2015-02-17 13:16:09,781 [INFO] Sample is more like log normal than normal :
+2015-02-17 13:18:53,012 [INFO] Scrub data to signal.txt and noise.txt takes : 11.6755
+2015-02-17 13:18:53,183 [INFO] 
+Test Normal
+JB=7050.9
+Chi-Square from Normal Dist=5.99 within 5% confidence level
+2015-02-17 13:18:53,189 [WARN] The sample are not normal within 5˜onfidence level by Jarque Bera Test
+2015-02-17 13:18:53,189 [INFO] Test Normal takes : 0.81129
+2015-02-17 13:18:53,385 [INFO] 
+Test Log Normal
+JB=32774.6
+Chi-Square from Normal Dist=5.99 within 5% confidence level
+2015-02-17 13:18:53,385 [WARN] The sample are not log normal within 5˜onfidence level by Jarque Bera Test
+2015-02-17 13:18:53,385 [INFO] Test Log Normal takes : 0.92591
+2015-02-17 13:18:53,385 [INFO] Sample is more like log normal than normal :
+2015-02-17 13:21:13,654 [INFO] Scrub data to signal.txt and noise.txt takes : 11.5497
+2015-02-17 13:21:13,827 [INFO] 
+Test Normal
+JB=7050.9
+Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:21:13,831 [WARN] The sample are not normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:21:13,831 [INFO] Test Normal takes : 0.82167
+2015-02-17 13:21:13,974 [INFO] 
+Test Log Normal
+JB=32774.6
+Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:21:13,977 [WARN] The sample are not log normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:21:13,981 [INFO] Test Log Normal takes : 0.68065
+2015-02-17 13:21:13,981 [INFO] Sample is more like normal than log normal :
+2015-02-17 13:21:50,959 [INFO] Scrub data to signal.txt and noise.txt takes : 11.6929
+2015-02-17 13:21:51,103 [INFO] 
+Test Normal
+JB=32779.6
+Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:21:51,109 [WARN] The sample are not normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:21:51,109 [INFO] Test Normal takes : 0.66213
+2015-02-17 13:21:51,261 [INFO] 
+Test Log Normal
+JB=32774.6
+Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:21:51,262 [WARN] The sample are not log normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:21:51,262 [INFO] Test Log Normal takes : 0.69266
+2015-02-17 13:21:51,262 [INFO] Sample is more like log normal than normal :
+2015-02-17 13:22:51,503 [INFO] Scrub data to signal.txt and noise.txt takes : 11.2532
+2015-02-17 13:22:51,685 [INFO] 
+Test Normal
+JB=32779.6
+Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:22:51,689 [WARN] The sample are not normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:22:51,689 [INFO] Test Normal takes : 0.68981
+2015-02-17 13:22:51,869 [INFO] 
+Test Log Normal
+JB=837.487
+Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:22:51,870 [WARN] The sample are not log normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:22:51,870 [INFO] Test Log Normal takes : 0.74199
+2015-02-17 13:22:51,872 [INFO] Sample is more like log normal than normal :
+2015-02-17 13:24:19,151 [INFO] Scrub data to signal.txt and noise.txt takes : 12.411
+2015-02-17 13:24:19,338 [INFO] Test Normal, JB=7050.9, Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:24:19,338 [WARN] The sample are not normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:24:19,338 [INFO] Test Normal takes : 0.84205
+2015-02-17 13:24:19,483 [INFO] Test Log Normal, JB=837.487, Chi-Square from Normal Dist=5.99 within 5 percent confidence level
+2015-02-17 13:24:19,488 [WARN] The sample are not log normal within 5 percent confidence level by Jarque Bera Test
+2015-02-17 13:24:19,488 [INFO] Test Log Normal takes : 0.69729
+2015-02-17 13:24:19,489 [INFO] Sample is more like log normal than normal :

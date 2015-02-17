@@ -47,10 +47,9 @@
 # just place it after the compiler name. For example:
 #   CPP = g++ -fno-elide-constructors
 #
-CCC     = gcc  -std=c++0x 
-CPP     = g++  -std=c++0x 
-CFLAGS1  = -Wall -g -std=c++11 -O2  -std=c++0x 
-CFLAGS1 =-/usr/lib/mpich/include/ -/usr/local/include
+CCC     = gcc
+CPP     = g++ 
+CFLAGS  = -I../__GXX_EXPERIMENTAL_CXX0X__ -O0 -g3 -Wall  -fmessage-length=0 -std=c++0x
 LDFLAGS = -lboost_system -lboost_filesystem  -llog4cpp -lpthread -lmpi -lmpi_cxx
 #-----------------------------------------------------------------------------
 # valid C++ file extensions

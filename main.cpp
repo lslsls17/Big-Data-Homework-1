@@ -15,47 +15,84 @@
 #include <time.h>
 #include <string.h>
 #include <sstream>
-#include </usr/lib/mpich/include/mpi.h>
 #include <thread>
+#include "mylog.hpp"
+#include </usr/lib/mpich/include/mpi.h>
+
 
 using namespace std;
 
 
-int main(int argc, char *argv[]) {
-	//log4cpp::Category& root = InitLogging::getRoot();
-	int signal_size;
-	if (argc == 2) {
-		if (strcmp(argv[1], "SCRUB") == 0) {
-			int rank=0;
-			int size=0;
-				 MPI_Init (&argc, &argv); /* starts MPI */
-				 MPI_Comm_rank (MPI_COMM_WORLD, &rank); /* get current process id */
-				 MPI_Comm_size (MPI_COMM_WORLD, &size); /* get number of processes */
-			int first_i = (rank ) / 26;
-			int second_i = (rank ) % 26;
-			char first_c = first_i + 'a';
-			char second_c = second_i + 'a';
-			std::ostringstream os;
-			os << "bulk" << first_c << second_c;
-			cout<<os<<endl;
-			//string sourceFile = os.str();
-
-			//signal_size=Scrub(sourceFile);
-			cout<<"Signal.txt"<<endl;
-		}
-		if (strcmp(argv[1], "NORMAL") == 0) {
-			Test_Normal("signal.txt",signal_size);
-		}
-	}else{
-		//root.error("[Wrong] need to input Task (SCRUB/NORMAL) as first param");
-	}
-}
-
-/*
 int main() {
 	log4cpp::Category& root = InitLogging::getRoot();
 	int signal_size;
-			signal_size=Scrub("data10k.txt");
+			cout<<"SCRUBING"<<endl;
+			signal_size=Scrub("data100k.txt");
+			cout<<"TEST NORMALING"<<endl;
+			double JB_normal, JB_log_normal;
+			JB_normal=Test_Normal("signal.txt",signal_size);
+			JB_log_normal=Test_Log_Normal("signal.txt",signal_size);
+			std::ostringstream os;
+			if (JB_normal<JB_log_normal)
+				{
+				os<< "Sample is more like normal than log normal :";
+				root.info(os.str());
+				}
+			else{
+				os<< "Sample is more like log normal than normal :";
+				root.info(os.str());
+			}
+}
+
+/*
+int main(int argc, char *argv[]) {
+	log4cpp::Category& root = InitLogging::getRoot();
+	int signal_size;
+		if (strcmp(argv[1], "SCRUB") == 0) {
+			signal_size=Scrub(argv[2]);
+		}
+		else if (strcmp(argv[1], "NORMAL") == 0) {
+			Test_Normal("signal.txt",signal_size);
+		}
+	else{
+	root.error("[Wrong] need to input Task (SCRUB/NORMAL) as first param");
+	}
+}
+*/
+
+/*
+int main() {
+	int signal_size;
+			int rank=0;
+			int size=0;
+				 MPI_Init (NULL, NULL);
+				 MPI_Comm_rank (MPI_COMM_WORLD, &rank);
+				 MPI_Comm_size (MPI_COMM_WORLD, &size);
+			//int first_i = (rank ) / 26;
+			//int second_i = (rank ) % 26;
+			//char first_c = first_i + 'a';
+			//char second_c = second_i + 'a';
+			//std::ostringstream os;
+			//os << "bulk" << first_c << second_c;
+
+				 // Get the name of the processor
+				   char processor_name[MPI_MAX_PROCESSOR_NAME];
+				   int name_len;
+				   MPI_Get_processor_name(processor_name, &name_len);
+
+				   // Print off a hello world message
+				   printf("Hello world from processor %s, rank %d"
+				          " out of %d processors\n",
+				          processor_name, rank, size);
+
+				   // Finalize the MPI environment.
+				   MPI_Finalize();
+
+
+			//string sourceFile = os.str();
+
+			signal_size=Scrub("data100k.txt");
+			//cout<<"Signal.txt"<<endl;
 			Test_Normal("signal.txt",signal_size);
 
 

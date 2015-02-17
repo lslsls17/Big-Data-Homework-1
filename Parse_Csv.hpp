@@ -15,7 +15,7 @@
 #include "data_class.hpp"
 #include <stdlib.h>     /* atoi */
 
-
+//Function for read data line by line, take file name as argument
 std::vector<data_A> Read(std::string infilename) {
 	std::vector<data_A> data;
 	std:: ifstream infile(infilename.c_str());
@@ -48,7 +48,7 @@ std::vector<data_A> Read(std::string infilename) {
                     }
     return data;
 }
-
+//Function for write data line by line, take output file name as argument
 void Write(data_A data,std::string outfilename)
 {
 	  std::ofstream outfile;
