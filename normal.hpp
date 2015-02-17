@@ -30,7 +30,7 @@ void ThreadFunction_mean(int threadID, int num,vector<data_A> signal) {
 }
 
 
-void Test_Normal(std::vector<data_A>  signal) {
+void Test_Normal(std::string signal) {
 double S;
 double K;
 double JB;
@@ -75,7 +75,7 @@ cout<<"S="<<S<<" "<<"K="<<K<<endl;
 JB=double(n)/6.0*(S*S+(K-3.0)*(K-3.0)/4.0);
 cout<<"JB="<<JB<<endl;
 }
-
+/*
 void Test_Log_Normal(std::vector<data_A>  signal) {
 double S;
 double K;
@@ -102,5 +102,5 @@ cout<<"S="<<S<<" "<<"K="<<K<<endl;
 JB=double(n)/6.0*(S*S+(K-3.0)*(K-3.0)/4.0);
 cout<<"JB="<<JB<<endl;
 }
-
+*/
 #endif /* NORMAL_HPP_ */

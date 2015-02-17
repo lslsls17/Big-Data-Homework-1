@@ -13,19 +13,42 @@
 #include <algorithm>    // std::sort
 #include "data_class.hpp"
 #include <stdlib.h>     /* atoi */
+#include "Parse_Csv.hpp"
 
+void Scrub(std::string infilename) {
+	//std::vector<data_A> data;
+	std:: ifstream infile(infilename.c_str());
+	std::string date_time;
+    float price;
+    int volume;
+    char date_time_C[40] ;
+    char price_C[10] ;
+    char volume_C[10] ;
+    if (infile.is_open())
+                    {
+                            while (infile.good())
+                            {
+                                    infile.getline(date_time_C, 256, ',');
+                                    infile.getline(price_C, 256, ',');
+                                    infile.getline(volume_C, 256, '\n');
+                                    date_time=(std::string)(date_time_C);
+                                    price=atof(price_C);
+                                    volume=atoi(volume_C);
+                                    //cout<<date_time<<" "<<price<<" "<<volume<<endl;
 
-void Scrub(std::vector<data_A> data, std::vector<data_A> & signal,std:: vector<data_A> & noise) {
+                                    //data.push_back(data_A(date_time, price,volume)) ;
+                         	       if (price< 500 ||price > 5000 )
+                         	    	   Write(data_A(date_time, price,volume),"noice.txt");
+                         	       else
+                         	    	   Write(data_A(date_time, price,volume),"signal.txt");
 
-	//sort(data.begin(),data.end());
-	for ( unsigned i = 0 ; i < data.size() ; i++ )
-	{
-	       if (data[i].price< 500 ||data[i].price > 5000 )
-	    	   noise.push_back(data[i]);
-	       else
-	    	   signal.push_back(data[i]);
-	}
-	//return make_tuple(signal,noise);
+                            }
+                            infile.close();
+                    }
+                    else
+                    {
+                    	std:: cout << "Error opening file";
+                    }
 
 }
 

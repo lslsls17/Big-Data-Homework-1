@@ -15,20 +15,10 @@ using namespace std;
 
 int main() {
 
-	vector<data_A> noise;
-	vector<data_A> signal;
-	Scrub(Read("data10k.txt"), signal,  noise);
 
-	sort(signal.begin(),signal.end());
-	//cout<<"sort done"<<endl;
-/*
-	for ( unsigned i = 0 ; i < signal.size() ; i++ )
-	{
-		cout<<signal[i].date_time<<" "<<signal[i].price<<endl;
-	}
-*/
-	Test_Normal(signal);
-	Test_Log_Normal(signal);
+	Scrub("data10k.txt");
+	Test_Normal("signal.txt");
+	//Test_Log_Normal(signal);
 
 
 	return 0;

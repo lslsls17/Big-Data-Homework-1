@@ -49,9 +49,12 @@ std::vector<data_A> Read(std::string infilename) {
     return data;
 }
 
-void Write(std::vector<data_A> signal)
+void Write(data_A data,std::string outfilename)
 {
-
+	  std::ofstream outfile;
+	  outfile.open (outfilename.c_str(), std::ios::out |std:: ios::app );
+	  outfile << data.date_time<<","<<data.price<<","<<data.volume<<"\n";
+	  outfile.close();
 }
 
 
