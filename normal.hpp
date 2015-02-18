@@ -13,24 +13,22 @@
 #include<math.h>
 #include <string>
 #include "data_class.hpp"
-//#include <thread>
+#include <thread>
 using namespace std;
-//static const int NUM_THREADS = 10;
-//static double x_mean_thread[NUM_THREADS];
-/*
- // Thread function. When a thread is launched, this is the code that gets executed.
- void ThreadFunction_mean(int threadID, int num,vector<data_A> signal) {
- //cout<<"start"<<endl;
- for (int i=0;i<num;i++)
- {
- x_mean_thread[threadID]=x_mean_thread[threadID]+signal[threadID*num+i].price/num;
- }
- cout<<"thread "<<threadID<<" launched"<<endl;
+static const int NUM_THREADS = 10;
+static double x_mean_thread[NUM_THREADS];
 
- }
- */
+// Thread function. When a thread is launched, this is the code that gets executed.
+void ThreadFunction_mean(int threadID, int num, vector<float> signal) {
+	for (int i = 0; i < num; i++) {
+		x_mean_thread[threadID] = x_mean_thread[threadID]
+				+ signal[threadID * num + i] / num;
 
+	}
 
+	//cout<<"thread "<<threadID<<" launched"<<endl;
+
+}
 
 /*********************************************************
  * Test Normal by using 5% confidence level by Jarque Bera Test
@@ -41,52 +39,54 @@ double Test_Normal(std::string signal, int signal_size) {
 	double S;
 	double K;
 	double JB;
-	double x_mean = 0;
+	double x_mean = 0.0;
 	int n = signal_size;
+	cout<<"n="<<n<<endl;
 	log4cpp::Category& root = InitLogging::getRoot();
 	clock_t begin = clock();
-//thread thread[NUM_THREADS];
-	/*
-	 for (int i = 0; i < NUM_THREADS; ++i) {
-	 std::cout<<"launch thread "<<i<<endl;
-	 thread[i] = std::thread(ThreadFunction_mean, i,int(double(n)/NUM_THREADS),signal);
-	 }
-	 for (int i = 0; i < NUM_THREADS; ++i) {
-	 thread[i].join();
-	 x_mean=x_mean+ x_mean_thread[i]/NUM_THREADS;
-	 }
-	 */
-
+	thread thread[NUM_THREADS];
+	double total_count = 0.0;
 	std::ifstream infile("signal.txt");
 	std::string date_time;
 	float price;
 	char date_time_C[40];
 	char price_C[10];
 	char volume_C[10];
+	vector<float> temp_price;
+	int block = 10000;
 	if (infile.is_open()) {
 		for (int i = 0; i < n; i++) {
 			infile.getline(date_time_C, 256, ',');
 			infile.getline(price_C, 256, ',');
 			infile.getline(volume_C, 256, '\n');
 			price = atof(price_C);
-			x_mean = x_mean * i / (i + 1) + double(price) / (i + 1);
+			temp_price.push_back(price);
+			//x_mean = x_mean * i / (i + 1) + double(price) / (i + 1);
+			if (i % block == 0) {
+				for (int i = 0; i < NUM_THREADS; ++i) {
+					//std::cout<<"launch thread "<<i<<endl;
+					x_mean_thread[i]=0;
+					thread[i] = std::thread(ThreadFunction_mean, i,
+							int(block / NUM_THREADS), temp_price);
+				}
+				for (int i = 0; i < NUM_THREADS; ++i) {
+					if (x_mean_thread[i] < 5000 && x_mean_thread[i] > 500) {
+						x_mean = total_count / (total_count + 1.0) * x_mean
+								+ x_mean_thread[i] / (total_count + 1.0);
+						total_count = total_count + 1.0;
+					}
+					x_mean_thread[i] = 0;
+
+					thread[i].join();
+				}
+				temp_price.clear();
+			}
 		}
 	}
-
-	cout << "x_mean=" << x_mean << endl;
 
 	double x_2_sum = 0;
 	double x_3_sum = 0;
 	double x_4_sum = 0;
-	if (infile.is_open()) {
-		for (int i = 0; i < n; i++) {
-			infile.getline(date_time_C, 256, ',');
-			infile.getline(price_C, 256, ',');
-			infile.getline(volume_C, 256, '\n');
-			price = atof(price_C);
-			x_mean = x_mean * i / (i + 1) + double(price) / (i + 1);
-		}
-	}
 
 	std::ifstream infile2("signal.txt");
 	if (infile2.is_open()) {
@@ -109,9 +109,10 @@ double Test_Normal(std::string signal, int signal_size) {
 	JB = double(n) / 6.0 * (S * S + (K - 3.0) * (K - 3.0) / 4.0);
 
 	std::ostringstream os;
-	os <<  "Test Normal, ";
-	os <<  "JB=" << JB;
-	os << ", Chi-Square from Normal Dist=5.99 within 5 percent confidence level";
+	os << "Test Normal, ";
+	os << "JB=" << JB;
+	os
+			<< ", Chi-Square from Normal Dist=5.99 within 5 percent confidence level";
 
 	root.info(os.str());
 
@@ -130,41 +131,64 @@ double Test_Normal(std::string signal, int signal_size) {
 	return JB;
 }
 
-
 /*********************************************************
  * Test Log Normal by using 5% confidence level by Jarque Bera Test
  *
  *
  ***********************************************************/
-double  Test_Log_Normal(std::string signal, int signal_size) {
+double Test_Log_Normal(std::string signal, int signal_size) {
 	double S;
 	double K;
 	double JB;
-	double x_mean = 0;
+	double x_mean = 0.0;
 	int n = signal_size;
 	log4cpp::Category& root = InitLogging::getRoot();
 	clock_t begin = clock();
-
+	thread thread[NUM_THREADS];
+	double total_count = 0.0;
 	std::ifstream infile("signal.txt");
 	std::string date_time;
 	float price;
 	char date_time_C[40];
 	char price_C[10];
 	char volume_C[10];
-
-
-	double x_2_sum = 0;
-	double x_3_sum = 0;
-	double x_4_sum = 0;
+	vector<float> temp_price;
+	temp_price.clear();
+	int block = 10000;
 	if (infile.is_open()) {
 		for (int i = 0; i < n; i++) {
 			infile.getline(date_time_C, 256, ',');
 			infile.getline(price_C, 256, ',');
 			infile.getline(volume_C, 256, '\n');
 			price = log(atof(price_C));
-			x_mean = x_mean * i / (i + 1) + double(price) / (i + 1);
+			temp_price.push_back(price);
+			//x_mean = x_mean * i / (i + 1) + double(price) / (i + 1);
+			if (i % block == 0) {
+				for (int i = 0; i < NUM_THREADS; ++i) {
+					//std::cout<<"launch thread "<<i<<endl;
+					x_mean_thread[i]=0;
+					thread[i] = std::thread(ThreadFunction_mean, i,
+							int(block / NUM_THREADS), temp_price);
+				}
+				for (int i = 0; i < NUM_THREADS; ++i) {
+					if (x_mean_thread[i] < log(5000)
+							&& x_mean_thread[i] > log(500)) {
+						x_mean = total_count / (total_count + 1.0) * x_mean
+								+ x_mean_thread[i] / (total_count + 1.0);
+						total_count = total_count + 1.0;
+					}
+					x_mean_thread[i] = 0;
+
+					thread[i].join();
+				}
+				temp_price.clear();
+			}
 		}
 	}
+
+	double x_2_sum = 0;
+	double x_3_sum = 0;
+	double x_4_sum = 0;
 
 	std::ifstream infile2("signal.txt");
 	if (infile2.is_open()) {
@@ -188,8 +212,9 @@ double  Test_Log_Normal(std::string signal, int signal_size) {
 
 	std::ostringstream os;
 	os << "Test Log Normal";
-	os <<  ", JB=" << JB;
-	os << ", Chi-Square from Normal Dist=5.99 within 5 percent confidence level";
+	os << ", JB=" << JB;
+	os
+			<< ", Chi-Square from Normal Dist=5.99 within 5 percent confidence level";
 
 	root.info(os.str());
 

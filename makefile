@@ -48,9 +48,9 @@
 #   CPP = g++ -fno-elide-constructors
 #
 CCC     = gcc
-CPP     = g++ 
-CFLAGS  = -I../__GXX_EXPERIMENTAL_CXX0X__ -O0 -g3 -Wall  -fmessage-length=0 -std=c++0x
-LDFLAGS = -lboost_system -lboost_filesystem  -llog4cpp -lpthread -lmpi -lmpi_cxx
+CPP     = g++
+CFLAGS  =  -L/usr/lib/mpich/lib -L/usr/lib/mpich/include/ -pthread -std=c++11 -Wl,--no-as-needed -llog4cpp -lpthread
+LDFLAGS = 
 #-----------------------------------------------------------------------------
 # valid C++ file extensions
 #-----------------------------------------------------------------------------

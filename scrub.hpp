@@ -42,11 +42,8 @@ int Scrub(std::string infilename) {
 			date_time = (std::string) (date_time_C);
 			price = atof(price_C);
 			volume = atoi(volume_C);
-			//cout<<date_time<<" "<<price<<" "<<volume<<endl;
-
-			//data.push_back(data_A(date_time, price,volume)) ;
 			if (price < 500 || price > 5000)
-				Write(data_A(date_time, price, volume), "noice.txt");
+				Write(data_A(date_time, price, volume), "noise.txt");
 			else {
 				Write(data_A(date_time, price, volume), "signal.txt");
 				signal_size++;
