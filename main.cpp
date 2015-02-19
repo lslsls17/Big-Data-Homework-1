@@ -25,6 +25,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 	log4cpp::Category& root = InitLogging::getRoot();
+
 	int signal_size;
 	if (strcmp(argv[1], "SCRUB") == 0) {
 		cout << "SCRUBING" <<" "<< argv[2] <<"!"<< endl;

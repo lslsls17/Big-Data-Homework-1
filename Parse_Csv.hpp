@@ -15,6 +15,7 @@
 #include "data_class.hpp"
 #include <stdlib.h>     /* atoi */
 
+
 //Function for read data line by line, take file name as argument
 std::vector<data_A> Read(std::string infilename) {
 	std::vector<data_A> data;
